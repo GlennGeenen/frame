@@ -9,6 +9,7 @@ var criteria = {
 var config = {
     $meta: 'This file configures the plot device.',
     projectName: '{{projectName}}',
+    secret: '&a 6y0W,ys6i|ODCZRJ_9?t|oCN^IT04Dz$u',
     port: {
         web: {
             $filter: 'env',

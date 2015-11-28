@@ -3,6 +3,7 @@ var Joi = require('joi');
 var Async = require('async');
 var Bcrypt = require('bcrypt');
 var Config = require('../../config');
+var jwt = require('jsonwebtoken');
 
 
 var internals = {};
@@ -101,15 +102,19 @@ internals.applyRoutes = function (server, next) {
             var credentials = request.pre.session._id.toString() + ':' + request.pre.session.key;
             var authHeader = 'Basic ' + new Buffer(credentials).toString('base64');
 
+            var user = {
+                _id: request.pre.user._id,
+                username: request.pre.user.username,
+                email: request.pre.user.email,
+                roles: request.pre.user.roles
+            };
+            var token = jwt.sign(user, Config.get('/secret'));
+          
             reply({
-                user: {
-                    _id: request.pre.user._id,
-                    username: request.pre.user.username,
-                    email: request.pre.user.email,
-                    roles: request.pre.user.roles
-                },
+                user: user,
                 session: request.pre.session,
-                authHeader: authHeader
+                authHeader: authHeader,
+                token: token
             });
         }
     });

@@ -27,11 +27,6 @@ var manifest = {
         'hapi-auth-basic': {},
         'lout': {},
         'inert': {},
-        'vision': {},
-        'visionary': {
-            engines: { jade: 'jade' },
-            path: './server/web'
-        },
         'hapi-mongo-models': {
             mongodb: Config.get('/hapiMongoModels/mongodb'),
             models: {
@@ -58,8 +53,7 @@ var manifest = {
         './server/api/sessions': [{ routes: { prefix: '/api' } }],
         './server/api/signup': [{ routes: { prefix: '/api' } }],
         './server/api/statuses': [{ routes: { prefix: '/api' } }],
-        './server/api/users': [{ routes: { prefix: '/api' } }],
-        './server/web/index': {}
+        './server/api/users': [{ routes: { prefix: '/api' } }]
     }
 };
 
